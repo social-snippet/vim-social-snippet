@@ -11,3 +11,9 @@ Vimrunner::RSpec.configure do |config|
   end
 end
 
+def enable_social_snippet
+  # load social_snippet.vim
+  plugin_path = File.expand_path('../..', __FILE__)
+  vim.add_plugin(plugin_path, 'plugin/social_snippet.vim')
+end
+
