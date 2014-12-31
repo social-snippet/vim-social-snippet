@@ -44,24 +44,41 @@ describe "social_snippet#complete" do
 
       context "keyword = ex" do
 
-        before { vim.command "call append(0, join(social_snippet#complete#repo_name('@snip <ex'), \"\n\"))" }
-        let(:output) { vim_current_buffer }
-        it { expect(output).to match /example-repo/ }
+        context "use cli" do
+          before { vim.command "call append(0, join(social_snippet#complete#complete_cli('@snip <ex'), \"\n\"))" }
+          let(:output) { vim_current_buffer }
+          it { expect(output).to match /example-repo/ }
+        end
 
-      end
+        context "use ruby", :rubyinterp => true do
+          before { vim.command "call append(0, join(social_snippet#complete#complete_ruby('@snip <ex'), \"\n\"))" }
+          let(:output) { vim_current_buffer }
+          it { expect(output).to match /example-repo/ }
+        end
+
+      end # keyword = ex
 
     end # repo_name
 
     describe "#file_name" do
 
-      context "keyword = example-repo:fu", :current => true do
+      context "keyword = example-repo:fu" do
 
-        before { vim.command "call append(0, join(social_snippet#complete#file_name('@snip <example-repo:fu'), \"\n\"))" }
-        let(:output) { vim_current_buffer }
-        it { expect(output).to match /func\.cpp/ }
-        it { expect(output).to match /func\// }
+        context "use cli" do
+          before { vim.command "call append(0, join(social_snippet#complete#complete_cli('@snip <example-repo:fu'), \"\n\"))" }
+          let(:output) { vim_current_buffer }
+          it { expect(output).to match /func\.cpp/ }
+          it { expect(output).to match /func\// }
+        end
 
-      end
+        context "use ruby", :rubyinterp => true do
+          before { vim.command "call append(0, join(social_snippet#complete#complete_ruby('@snip <example-repo:fu'), \"\n\"))" }
+          let(:output) { vim_current_buffer }
+          it { expect(output).to match /func\.cpp/ }
+          it { expect(output).to match /func\// }
+        end
+
+      end # keyword = example-repo:fu
 
     end # repo_name
 
