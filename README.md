@@ -15,10 +15,14 @@ $ git clone https://github.com/social-snippet/vim-social-snippet ~/.vim/bundle/v
 
 ### Use [neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
-Add the following line to .vimrc:
+Add the following lines to .vimrc:
 
 ```viml
 NeoBundle "social-snippet/vim-social-snippet"
+
+" to enable completion feature
+let g:neocomplete#enable_at_startup = 1
+NeoBundle "Shougo/neocomplete.vim"
 ```
 
 and run `:NeoBundleInstall`
@@ -28,6 +32,7 @@ and run `:NeoBundleInstall`
 * [social_snippet](https://social-snippet.github.io/) >= 0.0.2 # Don't forget to install
   * `$ gem install social_snippet`
 * vim >= 7.3
+  * [neocomplete.vim](https://github.com/Shougo/neocomplete.vim)
 * ruby >= 1.9.3
 * git
 
