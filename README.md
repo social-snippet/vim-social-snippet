@@ -22,6 +22,7 @@ NeoBundle "social-snippet/vim-social-snippet"
 
 " to enable completion feature
 let g:neocomplete#enable_at_startup = 1
+let g:social_snippet#complete#enable = 1
 NeoBundle "Shougo/neocomplete.vim"
 ```
 
