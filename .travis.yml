@@ -7,18 +7,40 @@ rvm:
   - "2.0"
   - "2.1"
 
+sudo: false
+
 before_install:
-  # vim-gtk: to enable client/server feature
-  - sudo apt-get install vim vim-gtk
+  # libruby.so
+  - export LD_LIBRARY_PATH=$HOME/.rvm/rubies/`rvm-prompt i v p`/lib:$LD_LIBRARY_PATH
+
+  # get vim source
+  - mkdir -p $HOME/local/src
+  - pushd $HOME/local/src
+  - apt-get source vim
+  - cd vim-*
+
+  # build vim
+  # TODO: --enable-luainterp
+  - ./configure
+    --with-features=huge
+    --enable-rubyinterp
+    --enable-gui=gtk2
+    --prefix=$HOME/local
+  - make -j4 && make install
+  - hash -r
+  - popd
+
+  # --enable-gui is required to enable client/server feature
+  - which vim
   - vim --version
+  - which gvim
   - gvim --version
 
 install:
-  - travis_retry bundle install --jobs=3
+  - travis_retry bundle install --jobs 4 --path vendor/bundle
 
 before_script:
   - sh -e /etc/init.d/xvfb start
-  # TODO: set repository host
   - bundle exec sspm install example-repo
 
 script:
@@ -27,4 +49,10 @@ script:
 env:
   global:
     - DISPLAY=:99.0
+    - SOCIAL_SNIPPET_SSPM_HOST=sspm-test.herokuapp.com
+    - PATH=$HOME/local/bin:$PATH
 
+cache:
+  directories:
+    - vendor/bundle
+    - $HOME/local/src
