@@ -3,6 +3,6 @@ function! social_snippet#version()
         \"%d.%d.%d",
         \"0",
         \"0",
-        \"0",
+        \"1",
         \)
 endfunction
