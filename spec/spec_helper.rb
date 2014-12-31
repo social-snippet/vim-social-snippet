@@ -6,18 +6,25 @@ Vimrunner::RSpec.configure do |config|
 
   config.start_vim do
     vim = Vimrunner.start
-
     vim
   end
 end
 
-def enable_social_snippet
-  # load social_snippet.vim
-  plugin_path = File.expand_path('../..', __FILE__)
-  vim.add_plugin(plugin_path, 'plugin/social_snippet.vim')
+module SpecHelpers
+
+  def enable_social_snippet
+    plugin_path = File.expand_path('../..', __FILE__)
+    vim.add_plugin(plugin_path, 'plugin/social_snippet.vim')
+    vim.command 'call social_snippet#init#ruby()'
+  end
+
+  def vim_current_buffer
+    vim.command('echomsg join(getline(1, "$"), "\n")').strip
+  end
+
 end
 
-def vim_current_buffer
-  vim.command('echomsg join(getline(1, "$"), "\n")').strip
+RSpec.configure do |config|
+  config.include SpecHelpers
 end
 
