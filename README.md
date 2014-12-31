@@ -39,7 +39,12 @@ and run `:NeoBundleInstall`
 
 ## Usage
 
-TODO: Write usage instructions here
+### Commands
+
+* `:SSInsertSnippet`
+* `:SSVersion`
+
+TODO: Write more usage instructions here
 
 ## Issues
 
