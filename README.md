@@ -25,8 +25,11 @@ and run `:NeoBundleInstall`
 
 ### Requirements
 
+* [social_snippet](https://social-snippet.github.io/) >= 0.0.2 # Don't forget to install
+  * `$ gem install social_snippet`
 * vim >= 7.3
 * ruby >= 1.9.3
+* git
 
 ## Usage
 
