@@ -6,14 +6,7 @@ Social snippet plugin for Vim
 
 ## Installation
 
-### Use Git
-
-```bash
-$ mkdir -p ~/.vim/bundle
-$ git clone https://github.com/social-snippet/vim-social-snippet ~/.vim/bundle/vim-social-snippet
-```
-
-### Use [neobundle.vim](https://github.com/Shougo/neobundle.vim)
+### Using [neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
 Add the following lines to .vimrc:
 
